@@ -39,7 +39,7 @@ BEGIN
 {
     @ISA = ('Exporter');
     @EXPORT = qw($LOOPNEST load_catalog);
-    $VERSION = '0.1';
+    $VERSION = '0.11';
 }
 
 
@@ -81,7 +81,6 @@ loop rules on a per-catalog basis. Returns one of three possible values:
 The false response corresponds to the $LOOPNEST functionality. But some
 Catalogs can create loop patterns that $LOOPNEST alone was unable to
 unravel. Leaving $IS_CHILD undefined will default to using just $LOOPNEST.
-=back
 
 =cut
 

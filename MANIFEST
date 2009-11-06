@@ -4,9 +4,20 @@ MANIFEST
 README
 LICENSE
 t/XML-ASCX12.t
+t/cat_175.t
 lib/XML/ASCX12.pm
 lib/XML/ASCX12/Catalogs.pm
 lib/XML/ASCX12/Segments.pm
 examples/INV.110.SAMPLE
+examples/INV.110.SAMPLE.ref
 examples/test1.pl
+examples/test2.pl
+examples/example_1.edi
+examples/example_2.edi
+examples/example_3.edi
+examples/example_4.edi
+examples/example_1.ref
+examples/example_2.ref
+examples/example_3.ref
+examples/example_4.ref
 META.yml                                 Module meta-data (added by MakeMaker)

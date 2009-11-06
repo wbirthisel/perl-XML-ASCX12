@@ -1,4 +1,4 @@
-                 XML-ASCX12 version 0.1
+                      XML-ASCX12 version 0.11
       A Perl Module to Convert ASC X12 EDI Data to XML
 
 $Id: README,v 1.2 2004/08/25 21:49:37 brian.kaney Exp $
@@ -9,6 +9,7 @@ This Perl module can be used to convert binary ASC X12 EDI data to UTF-8
 XML.  The transactions sets, or catalogs, it currently supports include:
 
     110     Air Freight Details and Invoice
+    175     Court Notice
     820     Payment Order/Remittance Advice
     997     Functional Acknowledgment
 

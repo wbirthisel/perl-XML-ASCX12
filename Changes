@@ -1,6 +1,14 @@
 Revision history for Perl extension XML::ASCX12.
 $Id: Changes,v 1.4 2004/09/28 14:59:34 brian.kaney Exp $
 
+0.11  Mon Nov 02 16:26:00 EDT 2009
+    - Add examples/*.ref reference xml output files
+    - Update t/XML-ASCX12.t to test 0.03 compatibility
+    - Fix missing final tag in convertdata()
+    - Fix (temporarily remove) incompatible element definitions added in 0.04
+    - Add cat_175.t tests
+    - renumber $VERSIONS fo consistency
+
 0.04  Mon Sep 28 16:17:23 EDT 2009
     - Add $IS_CHILD and Catalog 175 support
 

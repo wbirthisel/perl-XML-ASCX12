@@ -9,4 +9,5 @@ WriteMakefile(
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/XML/ASCX12.pm', # retrieve abstract from module
        AUTHOR         => 'Brian Kaney <brian@vermonster.com>') : ()),
+    clean	      => {FILES => "*/*.xml *.xml"},
 );

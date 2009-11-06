@@ -113,7 +113,7 @@ use warnings;
 no warnings 'utf8';
 use bytes;
 
-our $VERSION = '0.03';
+our $VERSION = '0.11';
 
 =head1 REQUIREMENTS
 
@@ -128,8 +128,8 @@ as is the L<XML::ASCX12::Segments|XML::ASCX12::Segments>.
 use Carp qw(croak);
 
 ## use Data::Dumper;
-use XML::ASCX12::Catalogs qw($LOOPNEST load_catalog);
-use XML::ASCX12::Segments qw($SEGMENTS $ELEMENTS);
+use XML::ASCX12::Catalogs qw(0.11 $LOOPNEST load_catalog);
+use XML::ASCX12::Segments qw(0.11 $SEGMENTS $ELEMENTS);
 
 =head1 VARIABLE AND METHODS
 
@@ -199,6 +199,40 @@ sub new
 
     bless ($self, $class);
     return $self;
+}
+
+=item $st = $obj->segment_terminator($char)
+
+=item $des = $obj->data_element_separator($char)
+
+=item $sbs = $obj->subelement_separator($char)
+
+Methods to read and reset the internal values established by the constructor.
+If called without a $char, just reads current value. When $char specified,
+sets the value to $char and returns it. Only single character values should
+be used. Setting all values via new() is the usual usage. These methods exist
+mostly to support testing. Changes within an EDI document are discouraged.
+
+=cut
+sub segment_terminator {
+    my $self = shift;
+    if (@_ == 1) { $self->{ST} = shift; }
+    return if (@_);
+    return $self->{ST};
+}
+
+sub data_element_separator {
+    my $self = shift;
+    if (@_ == 1) { $self->{DES} = shift; }
+    return if (@_);
+    return $self->{DES};
+}
+
+sub subelement_separator {
+    my $self = shift;
+    if (@_ == 1) { $self->{SBS} = shift; }
+    return if (@_);
+    return $self->{SBS};
 }
 
 =item boolean = $obj->convertfile($input, $output)
@@ -296,6 +330,8 @@ sub convertdata
 {
     my ($self, $in) = @_;
 
+    $self->_unload_catalog();
+
     croak "EDI Parsing Error:  Segment Terminator \"$self->{ST}\" not found" unless ($in =~ m/$self->{ST}/);
     croak "EDI Parsing Error:  Data Element Seperator \"$self->{DES}\" not found" unless ($in =~ m/$self->{DES}/);
 
@@ -307,6 +343,7 @@ sub convertdata
         $out .= $self->_proc_segment($_);
     }
     $out .= $self->_proc_segment('');
+    $out .= '</ascx:message>'; ## XMLTRAILER
 
    return $out;
 }
